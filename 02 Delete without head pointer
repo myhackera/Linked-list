@@ -1,0 +1,10 @@
+class Solution:
+    #Function to delete a node without any reference to head pointer.
+    def deleteNode(self,curr_node):
+        #code here
+        nextnode = curr_node.next
+        if(nextnode):
+            curr_node.data = nextnode.data
+            curr_node.next = nextnode.next 
+        else:
+            nextnode = None
