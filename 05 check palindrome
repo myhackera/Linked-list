@@ -1,0 +1,26 @@
+SOLUTION 1.) 
+===============================>
+
+def isPalindrome(head):
+
+    slow = head
+    stack = []
+     
+    ispalin = True
+    
+    while slow != None:
+    
+        stack.append(slow.data)
+        slow = slow.next
+        
+        while head != None:
+        
+            i = stack.pop()
+            if head.data == i:
+                ispalin = True
+            else:
+                ispalin = False
+                break
+        head = head.next
+         
+    return ispalin
