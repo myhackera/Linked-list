@@ -1,0 +1,23 @@
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if head is None:
+            return None
+        
+        first = head
+        second = head.next
+        while first and second:
+            first.val, second.val = second.val, first.val
+            
+            if first.next.next != None:
+                first = first.next.next
+            else:
+                break
+            
+            if second.next.next != None:
+                second = second.next.next
+            else:
+                break
+                
+        return head
+                
