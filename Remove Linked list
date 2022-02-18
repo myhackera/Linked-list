@@ -5,15 +5,17 @@ class Solution:
         curr = head
         
         while curr:
+        
             if curr.val == val:
-                if prev:
+                if prev:  # when deleted element is middle element
                     prev.next = curr.next
-                else:
+                else:     # when deleted element is first element
                     head = curr.next
                 curr = curr.next
             else:
                 prev = curr
                 curr = curr.next
+                
         return head
         
 TC : O(N)
