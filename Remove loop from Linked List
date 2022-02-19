@@ -1,0 +1,13 @@
+
+class Solution:
+    #Function to remove a loop in the linked list.
+    def removeLoop(self, head):
+        
+        temp = head
+        s = set()
+        while temp != None:
+            if temp.next in s:
+                temp.next = None
+                return 
+            s.add(temp)
+            temp = temp.next
