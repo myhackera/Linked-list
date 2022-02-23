@@ -1,0 +1,17 @@
+class Solution:
+    def insertionSort(self, head):
+        
+        if head is None:
+            return None
+        
+        temp1 = head
+        while temp1.next != None:
+            temp2 = temp1
+            mn = temp2
+            while temp2:
+                if mn.data >= temp2.data:
+                    mn = temp2
+                temp2 = temp2.next
+            temp1.data, mn.data = mn.data, temp1.data
+            temp1 = temp1.next
+        return head
