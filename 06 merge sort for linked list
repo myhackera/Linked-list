@@ -1,3 +1,6 @@
+SOLUTION 1.)
+====================================================>
+
 class Solution:
     def findMid(self, head):
         slow = head
@@ -40,3 +43,63 @@ class Solution:
         sortedList = self.merge(left, right)
         
         return sortedList
+
+SOLUTION 2.) 
+==================================================>
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def findMid(self, head):
+        
+        slow = head
+        fast = head.next
+        while(fast != None and fast.next != None):
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+       
+    def merge(self, head1, head2):
+        
+        merged = ListNode(-1)
+        temp = merged
+        
+        while head1 != None and head2 != None:
+            if head1.val > head2.val:
+                temp.next = head2
+                head2 = head2.next
+            else:
+                temp.next = head1
+                head1 = head1.next
+            temp = temp.next
+        
+        while head1 != None:
+            temp.next = head1
+            head1 = head1.next
+            temp = temp.next
+            
+        while head2 != None:
+            temp.next = head2
+            head2 = head2.next
+            temp = temp.next
+            
+        return merged.next
+    
+    
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if head is None or head.next is None:
+            return head
+        
+        mid = self.findMid(head)
+        
+        head2 = mid.next
+        mid.next = None
+        
+        head1 = self.sortList(head)
+        nhead2 = self.sortList(head2)
+        newHead = self.merge(head1, nhead2)
+        return newHead
