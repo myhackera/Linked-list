@@ -1,3 +1,5 @@
+Not Including last elements
+----------------------------->>>>
 
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
@@ -24,3 +26,36 @@ class Solution:
         head.next = self.reverseKGroup(curr, k)
             
         return prev
+
+
+# Including last elements
+---------------------------->>>>
+
+
+class Solution:
+    def reverse(self,head, k):
+        
+        if head is None:
+            return 
+        curr = head
+        prev = None
+        stack = []
+        
+        while curr:
+            val = 0
+            
+            while curr is not None and val < k:
+                stack.append(curr.data)
+                curr = curr.next
+                val += 1 
+            
+            while stack:
+                if prev is None:
+                    prev = Node(stack.pop())
+                    head = prev
+                else:
+                    prev.next = Node(stack.pop())
+                    prev = prev.next
+                    
+        prev.next = None
+        return head
