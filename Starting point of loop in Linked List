@@ -18,3 +18,19 @@ class Solution:
             slow = slow.next
             head = fast.next
         return slow
+
+Using set:
+===========>>>
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if not head:
+            return None
+        s = set()
+        temp = head
+        while temp:
+            if temp in s:
+                return temp
+            s.add(temp)
+            temp = temp.next
+        return None
