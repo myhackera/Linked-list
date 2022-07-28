@@ -1,0 +1,52 @@
+Solution 1.) 
+------------>>>>
+
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        even = ListNode()
+        ev = even
+        odd = ListNode()
+        od = odd
+        
+        i = 1
+        
+        while head != None:
+            if i&1:
+                od.next = head
+                od = od.next
+                head = head.next
+                od.next = None
+            else:
+                ev.next = head
+                ev = ev.next
+                head = head.next
+                ev.next = None
+            i += 1
+        
+        od.next = even.next
+        
+        return odd.next
+        
+Solution 2.) 
+------------>>>>
+
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    
+        if not head: return head
+        
+        odd = head
+        even = head.next
+        oh = head
+        eh = head.next
+        
+        while even and even.next:
+            
+            odd.next = odd.next.next
+            even.next = even.next.next
+            odd = odd.next
+            even = even.next
+            
+        odd.next = eh
+        return oh
