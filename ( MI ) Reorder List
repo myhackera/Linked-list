@@ -1,0 +1,37 @@
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        
+        if not head:
+            return None
+        
+        # Find Mid Point------------------------
+        
+        slow = head
+        fast = head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            
+        curr = slow.next
+        slow.next = None
+        
+        # Reverse Next half----------------------- 
+        
+        prev = None
+        while curr:
+            
+            nex = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nex
+            
+        # Merge first and second half--------------- 
+        
+        first, second = head, prev
+        while second:
+            
+            first.next, first = second, first.next
+            second.next, second = first, second.next
+
+        return 
