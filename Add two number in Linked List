@@ -1,0 +1,49 @@
+class Solution:
+    def reverse(self, head):
+        
+        prev = None
+        curr = head
+        while curr:
+            nex = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nex
+        head = prev
+        return head
+        
+    def addTwoLists(self, first, second):
+        
+        first = self.reverse(first)
+        second = self.reverse(second)
+        
+        ans_list = Node(None)
+        curr = ans_list
+        power = 0
+        while first and second:
+            value = first.data + second.data + power
+            power = value//10
+            temp = value%10
+            curr.next = Node(temp)
+            curr = curr.next
+            first = first.next
+            second = second.next
+        while first:
+            value = first.data + power
+            power = value//10
+            temp = value%10
+            curr.next = Node(temp)
+            curr = curr.next
+            first = first.next
+        while second:
+            value = second.data + power
+            power = value//10
+            temp = value%10
+            curr.next = Node(temp)
+            curr = curr.next
+            second = second.next
+        if power != 0:
+            curr.next = Node(power)
+        ret = ans_list.next
+        ret = self.reverse(ret)
+        return ret
+        
