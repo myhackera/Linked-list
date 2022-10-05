@@ -13,15 +13,15 @@ def isPalindrome(head):
         stack.append(slow.data)
         slow = slow.next
         
-        while head != None:
-        
-            i = stack.pop()
-            if head.data == i:
-                ispalin = True
-            else:
-                ispalin = False
-                break
-        head = head.next
+    while head != None:
+
+        i = stack.pop()
+        if head.data == i:
+            ispalin = True
+        else:
+            ispalin = False
+            break
+    head = head.next
          
     return ispalin
     
